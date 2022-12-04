@@ -14,19 +14,27 @@ For now, all games are either 1 player or player vs bot.
 
 🔵 Chess
 
+🔵 Checkers
+
+🔵 Backgammon
+
+🔵 Go
+
+🔵 Connect 4
+
 🔵 Sudoku (1 player)
 
 🔵 Minesweeper (1 player)
 
 🔵 Flood-it (1 player)
 
-🔵 Battleships
-
 🔵 Sokoban (1 player) *[PolyMars](https://www.youtube.com/watch?v=0fWdU8JCT6Y) have already made this one!*
 
-🔵 Nonograms
-
 🔵 Maybe more.........
+
+## Dev To-do list
+
+🔵 Command handling
 
 ## Example uses!
 

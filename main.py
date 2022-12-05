@@ -3,7 +3,6 @@ import os
 import logging
 import discord
 import math
-import random
 from discord.ext import commands
 from dotenv import load_dotenv, find_dotenv
 
@@ -16,7 +15,7 @@ bot = commands.Bot(command_prefix='::', intents=discord.Intents.all())
 # utils
 async def send_response(ctx, subject, response, formatted: bool = True):
     logging.info(
-        f'Query {ctx.message.content.split()[0][len(bot.command_prefix):]} ({subject}) from {ctx.author} -> Sent "{response}" as response.')
+        f'Query {ctx.message.content.split()[0][len(str(bot.command_prefix)):]} ({subject}) from {ctx.author} -> Sent "{response}" as response.')
     if formatted:
         await ctx.send(f'```\n{response}\n```')
     else:
@@ -43,7 +42,7 @@ async def get_latency(ctx):
 async def avatar(ctx, *args: discord.User):
     for i in args:
         try:
-            x = i.avatar.url
+            x = i.avatar.url # type: ignore
         except Exception as error:
             logging.error(f"{error} occurred! - Query aborted.")
             continue
@@ -144,7 +143,7 @@ async def ttt(ctx):
     player = player_selection_message.content.lower()
     if player == o:
         selection_move = my_move(0, True)
-        board[selection_move[0]][selection_move[1]] = x
+        board[selection_move[0]][selection_move[1]] = x  # type: ignore
 
     while check_for_winner() is None:
         await send_response(ctx, None, show_board(board))
@@ -167,9 +166,9 @@ async def ttt(ctx):
             break
         move = my_move(0, player == o)
         if player == x:
-            board[move[0]][move[1]] = o
+            board[move[0]][move[1]] = o # type: ignore
         else:
-            board[move[0]][move[1]] = x
+            board[move[0]][move[1]] = x # type: ignore
 
     await send_response(ctx, None, show_board(board))
     winner = check_for_winner()
@@ -194,4 +193,4 @@ async def on_command_error(ctx, error):
         await send_response(ctx, f'ERROR: {error}', 'Coroutine timed out.')
 
 
-bot.run(os.environ.get("CLIENT_TOKEN"))
+bot.run(os.environ.get("CLIENT_TOKEN")) # type: ignore
